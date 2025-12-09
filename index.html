@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>DataHub ВУЗов Казахстана — ТОП‑10</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+<header>
+  <div class="container topbar">
+    <div class="brand">DataHub ВУЗов Казахстана</div>
+    <nav id="nav">
+      <a href="#" data-target="home" class="active">Главная</a>
+      <a href="#" data-target="about">Об университете</a>
+      <a href="#" data-target="programs">Программы</a>
+      <a href="#" data-target="admissions">Поступление</a>
+      <a href="#" data-target="tour">3D‑тур</a>
+      <a href="#" data-target="international">Международное</a>
+      <a href="#" data-target="compare">Сравнение</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div id="home" class="section active">
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h1>Единый каталог ТОП‑10 ВУЗов Казахстана</h1>
+          <p class="muted">Ищите программы, сравнивайте вузы, узнавайте требования.</p>
+          <div class="row" style="margin-top:10px;">
+            <input id="search" class="input" placeholder="Поиск по программам, вузам, направлениям…" />
+            <button class="btn" id="clearSearch">Очистить</button>
+          </div>
+          <div id="searchResults" class="list cols-2" style="margin-top:12px;"></div>
+        </div>
+
+        <div class="card" style="margin-top:18px;">
+          <h2>Популярные университеты</h2>
+          <div id="popular" class="list cols-2" style="margin-top:10px;"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h2>ИИ‑ассистент (на базе Wikipedia)</h2>
+          <div id="chat" class="chat"></div>
+          <div class="row">
+            <input id="chatInput" class="input" placeholder='Напишите: «Что такое Солнце?» или «Найди CS‑программы в Алматы»' />
+            <button id="sendBtn" class="btn primary">Отправить</button>
+          </div>
+          <div class="hint">Поддержка: поиск, сравнение, дедлайны, и **энциклопедические справки от Wikipedia**.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="section">
+    <div class="card">
+      <h1>Об университетах</h1>
+      <div id="aboutList" class="list cols-3" style="margin-top:10px;"></div>
+    </div>
+  </div>
+
+  <div id="programs" class="section">
+    <div class="card">
+      <h1>Академические программы</h1>
+      <div class="row" style="margin-top:10px;">
+        <select id="filterCity" class="input" style="max-width:220px;">
+          <option value="">Город: все</option>
+          <option>Алматы</option>
+          <option>Астана</option>
+          <option>Караганда</option>
+        </select>
+        <select id="filterField" class="input" style="max-width:220px;">
+          <option value="">Направление: все</option>
+          <option>Computer Science</option>
+          <option>Business</option>
+          <option>Engineering</option>
+          <option>Biology</option>
+          <option>Education</option>
+          <option>Social Sciences</option>
+        </select>
+        <select id="filterLang" class="input" style="max-width:220px;">
+          <option value="">Язык: все</option>
+          <option>английский</option>
+          <option>русский</option>
+          <option>казахский</option>
+        </select>
+      </div>
+      <div id="programList" class="list cols-3" style="margin-top:10px;"></div>
+    </div>
+  </div>
+
+  <div id="admissions" class="section">
+    <div class="card">
+      <h1>Приём и поступление</h1>
+      <p class="muted"><span class="pill">Общее</span> GPA от 3.0, IELTS от 6.5 для англоязычных программ, профильные экзамены — по программе.</p>
+      <div class="list cols-2" style="margin-top:12px;" id="scholarList"></div>
+    </div>
+  </div>
+
+  <div id="tour" class="section">
+    <div class="card">
+      <h1>3D‑тур (MVP)</h1>
+      <p class="muted">Для демо используем панорамы. (Голосовое управление отключено)</p>
+      <img class="img360" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop" alt="Панорама кампуса (заглушка)" />
+    </div>
+  </div>
+
+  <div id="international" class="section">
+    <div class="card">
+      <h1>Международное сотрудничество</h1>
+      <div id="partnerList" class="list cols-3" style="margin-top:10px;"></div>
+    </div>
+  </div>
+
+  <div id="compare" class="section">
+    <div class="card">
+      <h1>Сравнение вузов</h1>
+      <div class="table-wrap" style="margin-top:10px;">
+        <table id="compareTable">
+          <thead>
+            <tr>
+              <th>Атрибут</th>
+              <th>Университет A</th>
+              <th>Университет B</th>
+              <th>Университет C</th>
+            </tr>
+          </thead>
+          <tbody id="compareBody"></tbody>
+        </table>
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <select id="cmpA" class="input" style="max-width:220px;"></select>
+        <select id="cmpB" class="input" style="max-width:220px;"></select>
+        <select id="cmpC" class="input" style="max-width:220px;"></select>
+        <button class="btn primary" id="updateCmp">Обновить сравнение</button>
+      </div>
+      <div class="hint">Выберите вузы для сравнения стоимости, языков, общежитий и стажировок.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    Сделано для хакатона: единый каталог ТОП‑10 ВУЗов Казахстана с ИИ‑ассистентом.
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
